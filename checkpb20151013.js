@@ -1,5 +1,3 @@
-//methods and oringinal program are from teacher Yap;
-
 var regex = /<pb id="(\d+\.\d+[a-z])"\/>/;
 var suspectregex = /pb.?id/;
 
@@ -39,7 +37,7 @@ var nextpage = function(pb) {
 }
 
 processfile = function(fn) {
-	var vol = fn.split('/')[1];
+	var vol = fn.split('/')[2];
 	var content = fs.readFileSync(fn.trim(),'utf8').replace(/\r\n/g, '\n');
 	var arr = content.split('\n');
 
@@ -77,6 +75,6 @@ processfile = function(fn) {
 	}
 }
 
-glob('jiangkangyur/[0-9][0-9][0-9]/{.*,*}.xml', {nosort: true}, function(err, files) {
+glob('../jiangkangyur/[0-9][0-9][0-9]/{.*,*}.xml', {nosort: true}, function(err, files) {
 	files.map(processfile);
 });
