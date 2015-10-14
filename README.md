@@ -24,7 +24,7 @@ clone 或下載 check_jiangkangyur_pb 資料夾，和jiangkangyur 資料夾放�
 
 如果沒有解釋，表示pb id跳號或順序不對
 
-如果顯示"wrong pb tag format"，表示pb id格式不像 <pb id="1.1a"/>，可能 "符號打錯 或 少打 = / 或 多空格少空格等等
+如果顯示"wrong pb tag format"，表示pb id格式不像 \<pb id="1.1a"/\>，可能 "符號打錯 或 少打 = / 或 多空格少空格等等
 
 顯示pb id not start from "0a" or "1a"，表示該pb id是volumn的第一個檔案的第一個pb id，這個pb id不是從 0a 或 1a 開始
 
