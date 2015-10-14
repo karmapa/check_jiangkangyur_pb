@@ -1,4 +1,4 @@
-var regex = /\B<pb id="(\d+\.\d+[a-z])"\/>\B/;
+var regex = /<pb id="(\d+\.\d+[a-z])"\/>/;
 var suspectregex = /pb.?id/;
 
 var fs = require('fs');
@@ -12,6 +12,12 @@ var check_pbtag_format = function(fn, str, i) {
 	if (str.match(suspectregex) && !str.match(regex)) {
 		console.log('error', str, fn, 'line', i + 1, "wrong pb tag format");
 	};
+}
+
+var check_first_pb = function(fn, pb) { // first pb id of 'first file' in a volumn don't start from '0a' or '1a'; 
+	if ((pb.substring(pb.length - 2) !== '0a') && (pb.substring(pb.length - 2) !== '1a')) {
+		console.log('error', pb, fn, 'pb id not start from "0a" or "1a"'); 
+	}
 }
 
 var nextpage = function(pb) {
@@ -39,20 +45,16 @@ var nextpage = function(pb) {
 
 processfile = function(fn) {
 	var vol = fn.split('/')[2];
-	var content = fs.readFileSync(fn.trim(),'utf8').replace(/\r\n/g, '\n');
-	var arr = content.split('\n');
+	var arr = fs.readFileSync(fn.trim(),'utf8').replace(/\r\n/g, '\n').split('\n');
 
 	if (lastvol !== vol) { //only first file in a volumn enters this route;
 		lastvol = vol;
 		lastid = '';
-		var firstpb = content.match(regex)[1];
-		if ((firstpb.substring(firstpb.length - 2) !== '0a') && (firstpb.substring(firstpb.length - 2) !== '1a')) {
-			console.log('error', firstpb, fn, 'pb id not start from "0a" or "1a"'); // first pb id of 'first file' in a volumn don't start from '0a' or '1a'; 
-		} 
 		for (var i = 0; i < arr.length; i++) {
 			check_pbtag_format(fn, arr[i], i);
 			arr[i].replace(regex, function(m, m1) {
 				if (!lastid) {
+					check_first_pb(fn, m1);
 					lastid = m1; return;
 				}
 				nextpage(lastid);
