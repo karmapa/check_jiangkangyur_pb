@@ -17,6 +17,7 @@ clone 或下載 check_jiangkangyur_pb 資料夾，和jiangkangyur 資料夾放�
 ![3](https://cloud.githubusercontent.com/assets/13195099/10474245/1176ef68-7267-11e5-87bc-0b8ea05d9fb0.JPG)
 
 4. 開始檢查pb tag
+
 ![4](https://cloud.githubusercontent.com/assets/13195099/10474265/52a918c6-7267-11e5-9a10-83c6257c9243.JPG)
 
 5. 錯誤類型
