@@ -17,9 +17,12 @@ clone 或下載 check_jiangkangyur_pb 資料夾，和jiangkangyur 資料夾放�
 ![3](https://cloud.githubusercontent.com/assets/13195099/10474245/1176ef68-7267-11e5-87bc-0b8ea05d9fb0.JPG)
 
 如果輸入 node checkpb20151013.js 後出現 Cannot find module 'glob'(如下圖a)，
+
 請重新輸入 npm i glob(如下圖b)，按enter，等命令列跑完，再輸入 node checkpb20151013.js ，再按enter即可
+
 圖a
 ![default](https://cloud.githubusercontent.com/assets/13195099/10603974/e4a3aac0-7753-11e5-872a-5f3db9a1913c.JPG)
+
 圖b
 ![2](https://cloud.githubusercontent.com/assets/13195099/10603979/ef04d3cc-7753-11e5-9939-4808aca134f7.JPG)
 
