@@ -14,7 +14,7 @@ clone 或下載 check_jiangkangyur_pb 資料夾，和jiangkangyur 資料夾放�
 3 type node checkpb20151013.js
 
 在命令列視窗輸入 node checkpb20151013.js，按enter 開始檢查pb tag
-![3](https://cloud.githubusercontent.com/assets/13195099/10474245/1176ef68-7267-11e5-87bc-0b8ea05d9fb0.JPG)
+![default](https://cloud.githubusercontent.com/assets/13195099/10604268/d56fb948-7755-11e5-9944-67c28213dbcd.JPG)
 
 如果輸入 node checkpb20151013.js 後出現 Cannot find module 'glob'(如下圖a)，
 
