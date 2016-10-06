@@ -1,5 +1,7 @@
-var regex = /<pb id="(\d+\.\d+[a-z])"\/>/;
-var suspectregex = /pb.?id/;
+var regex = /<jp id="(\d+\.\d+[a-z])"\/>/;
+var suspectregex = /jp/;
+//var regex = /<pb id="(\d+\.\d+[a-z])"\/>/;
+//var suspectregex = /pb\.id/;
 
 var fs = require('fs');
 var glob = require('glob');
@@ -43,7 +45,7 @@ var nextpage = function(pb) {
 	nextpage2 = vol + pg2;
 }
 
-processfile = function(fn) {
+var processfile = function(fn) {
 	var vol = fn.split('/')[2];
 	var arr = fs.readFileSync(fn.trim(),'utf8').replace(/\r\n/g, '\n').split('\n');
 
@@ -78,6 +80,38 @@ processfile = function(fn) {
 	}
 }
 
-glob('../jiangkangyur/[0-9][0-9][0-9]/{.*,*}.xml', {nosort: true}, function(err, files) {
+function match1stN(str) {
+	return str.match(/(\d+)\w?_[^_]+xml/)[1];
+}
+
+function match2ndN(str) {
+	return str.match(/_(\d+)[^_]+xml/)[1];
+}
+
+function match1stW(str) {
+	var matchResult = str.match(/\d+([a-z])_[^_]+xml/) || [];
+	return matchResult[1];
+}
+
+function sortFileName(files) {
+	return files.sort(function(a, b) {
+		var compare1stN = match1stN(a) - match1stN(b);
+		var compare2ndN = match2ndN(a) - match2ndN(b);
+		var a1stW = match1stW(a), b1stW = match1stW(b);
+
+		if (compare1stN) {
+			return compare1stN;
+		}
+		else if (a1stW !== b1stW) {
+			return (a1stW > b1stW) ? 1 : -1;
+		}
+		else {
+			return compare2ndN;
+		}
+	});
+}
+
+glob('./checkingFiles/**/*.xml', {nosort:true}, function(err, files) {
+	sortedFiles = sortFileName(files);
 	files.map(processfile);
 });
